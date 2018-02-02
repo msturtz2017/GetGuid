@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using ctci_helpers;
 using System.Windows.Forms;
 namespace GetGuid
 {
@@ -20,27 +19,25 @@ namespace GetGuid
             if(!string.IsNullOrEmpty(input))
             {
                 numGuid =  int.Parse(input);
+                StringBuilder sb = new StringBuilder();
+                Guid g;
+                for (int i = 0; i < numGuid; i++)
+                {
+                    Console.WriteLine();
+                    g = Guid.NewGuid();
+                    Console.WriteLine(g);
+                    sb.Append(g + "\n");
+                }
+
+                Clipboard.SetText(sb.ToString());
             }
             else
             {
                 Console.WriteLine("You must enter a valid number");
-                return;
             }
 
-            
-            StringBuilder sb = new StringBuilder();
-
-            Guid g;
-            for (int i = 0; i < numGuid; i++)
-            {
-                Console.WriteLine();
-                g = Guid.NewGuid();
-                Console.WriteLine(g);
-                sb.Append(g + "\n");
-            }
-
-            Clipboard.SetText(sb.ToString());
-            CDis.Exit();
+            Console.WriteLine("Press any key to exit");
+            Console.ReadLine();
         }
     }
 }
